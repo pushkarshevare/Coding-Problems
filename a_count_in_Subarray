@@ -1,0 +1,27 @@
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        int k =sc.nextInt();
+        
+        int maxCnt = 0;
+        
+        for(int  i =0; i<=s.length()-k; i++){
+            String sub = s.substring(i,i+k);
+            
+            int count =0;
+            for(int j=0; j<k; j++){
+                if(sub.charAt(j) == 'a'){
+                    count++;
+                }
+            }
+            if(count > maxCnt){
+                maxCnt = count;
+            }
+            
+        }
+        System.out.println(maxCnt);
+    }
+}
