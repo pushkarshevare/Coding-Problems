@@ -1,0 +1,28 @@
+
+import java.util.*;
+class Main {
+    public static String moveHyphen(String str, int n){
+        
+        StringBuilder hyphen = new StringBuilder();
+        StringBuilder withoutHyphen = new StringBuilder();
+        
+        for(int i=0; i<n; i++){
+            if(str.charAt(i) == '-'){
+                hyphen.append(str.charAt(i));
+            }else{
+                withoutHyphen.append(str.charAt(i));
+            }
+        }
+        
+        return hyphen.toString() + withoutHyphen.toString();
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        
+        int n = s.length();
+        
+        System.out.print(moveHyphen(s,n));
+        
+    }
+}
