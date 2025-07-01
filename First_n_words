@@ -1,0 +1,11 @@
+class Main {
+    public static void main(String[] args) {
+        String str = "Hello I am a passionate developer";
+        
+        String[] words = str.split(" ");
+        
+        for(int i=0; i<4; i++){
+            System.out.print(words[i]+" ");
+        }
+    }
+}
