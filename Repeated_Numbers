@@ -1,0 +1,35 @@
+
+import java.util.Scanner;
+import java.util.HashMap;
+class Main {
+   
+   public static HashMap<Integer,Integer> occurence(int[] array){
+       HashMap<Integer,Integer> occ = new HashMap<>();
+       
+       for(int elem : array){
+           if(occ.containsKey(elem)){
+               occ.put(elem,occ.get(elem)+1);
+           }else{
+               occ.put(elem,1);
+           }
+       }
+       return occ;
+   }
+   
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        
+        int[] arr = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+        
+        HashMap<Integer,Integer> result = occurence(arr);
+        
+        for(int key : result.keySet()){
+            System.out.println(key +" "+ result.get(key));
+        }
+        
+    }
+}
