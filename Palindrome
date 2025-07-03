@@ -1,0 +1,33 @@
+
+
+class Main {
+    
+    public static String palindrome(String str){
+        
+        int left =0;
+        int right =str.length()-1;
+        
+        char[] words = str.toCharArray();
+        
+        while(left < right){
+            if(words[left] != words[right]){
+                return "False";
+            }
+            
+            left++;
+            right--;
+        }
+        
+        return "True";
+        
+    }
+    
+    public static void main(String[] args) {
+
+    String s = "Madams";
+    
+    
+    System.out.println(palindrome(s.toLowerCase()));
+    
+    }
+}
