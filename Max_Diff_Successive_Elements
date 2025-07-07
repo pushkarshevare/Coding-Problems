@@ -1,0 +1,47 @@
+/*
+Problem Statement 
+
+Given an integer array nums, return the maximum difference between two successive elements in its sorted form. If the array contains less than two elements return 0;
+
+Input: arr = [3,6,9,1]
+Output: 3
+
+*/
+import java.util.*;
+class Main {
+    
+    public static int maxDiff(int[] arr,int n){
+        
+        if(n<2){
+            return 0;
+        }
+        
+        int max = Integer.MIN_VALUE;
+        
+        Arrays.sort(arr);
+        
+        for(int i=0;i<n-1; i++){
+            int diff = arr[i+1] - arr[i];
+            
+            if(diff > max){
+                max = diff;
+            }
+        }
+        
+        return max;
+        
+    }
+    
+    public static void main(String[] args) {
+       Scanner sc = new Scanner(System.in);
+       int n = sc.nextInt();
+       
+       int[] arr = new int[n];
+       
+       for(int i=0; i<n; i++){
+           arr[i] = sc.nextInt();
+       }
+       
+       System.out.println(maxDiff(arr,n));
+    }
+}
