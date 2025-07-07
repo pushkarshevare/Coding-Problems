@@ -1,0 +1,54 @@
+/*
+
+You are a given a string str of length n. You have to find the most frequent vowel in the string str
+Note: You may assume that str will always hav a unique most frequent vowel.
+
+Sample Test Case:
+Input:
+7 -> string length
+xayuaba
+
+Output:
+a
+
+Explanation: As the vowel 'a' occurs the most in the string str, hence 'a' is printed in the output.
+
+*/
+import java.util.*;
+class Main {
+    
+    public static char getFreqChar(String str){
+        
+        char freqChar = '\0';
+        int maxCnt = 0;
+        
+        HashMap<Character, Integer> vowelsCnt = new HashMap<>();
+        
+        
+        for(int i=0; i<str.length(); i++){
+            if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) =='u'){
+                
+                if(vowelsCnt.containsKey(str.charAt(i))){
+                    int cnt = vowelsCnt.get(str.charAt(i));
+                    vowelsCnt.put(str.charAt(i),cnt+1);
+                }else{
+                    vowelsCnt.put(str.charAt(i),1);
+                }
+                
+                if(vowelsCnt.get(str.charAt(i)) > maxCnt){
+                    maxCnt = vowelsCnt.get(str.charAt(i));
+                    freqChar = str.charAt(i);
+                }
+            }
+        }
+        
+        return freqChar;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        
+        System.out.println(getFreqChar(str));
+    }
+}
