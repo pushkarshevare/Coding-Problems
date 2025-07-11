@@ -1,0 +1,115 @@
+/*
+Given a 2D matrix matrix, handle multiple queries of the following type:
+
+Calculate the sum of the elements of matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
+
+Implement the NumMatrix class:
+
+NumMatrix(int[][] matrix) initializes the object with the integer matrix matrix.
+int sumRegion(int row1, int col1, int row2, int col2) returns the sum of the elements of matrix inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
+You must design an algorithm where sumRegion works in O(1) time complexity.
+
+Input Format:
+The first part of the input is the 2D integer matrix matrix.
+The next part contains multiple queries, where each query is defined by four integers row1, col1, row2, col2.
+
+Output Format:
+For each query, output the sum of the elements of matrix inside the specified rectangle.
+
+Constraints:
+m == matrix.length
+n == matrix[i].length
+1 <= m, n <= 200
+-104 <= matrix[i][j] <= 104
+0 <= row1 <= row2 < m
+0 <= col1 <= col2 < n
+At most 104 calls will be made to sumRegion.
+
+Sample test cases
+Input
+3 3
+1 2 3
+4 5 6
+7 8 9
+1
+0 0 1 1
+Expected output
+12
+*/
+
+import java.util.Scanner;
+public class Main {
+
+	int[][] Psum;
+
+	public Main(int[][] arr){
+		Psum = new int[arr.length][arr[0].length];
+
+		int n= arr.length;
+		int m= arr[0].length;
+
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				if(j==0){
+					Psum[i][j] = arr[i][j];
+				}else{
+					Psum[i][j] = Psum[i][j-1] + arr[i][j];
+				}
+			}
+		}
+
+		for(int j=0; j<m; j++){
+			for(int i=1; i<n; i++){
+				Psum[i][j] = Psum[i-1][j] + Psum[i][j];
+			}
+		}
+
+	}
+
+	public int sumRegion(int x1,int y1,int x2,int y2){
+
+		int sum =0;
+		sum = sum+Psum[x2][y2];
+
+		if(x1-1 >=0){
+			sum = sum- Psum[x1-1][y2];
+		}
+		if(y1-1 >=0){
+			sum = sum- Psum[x2][y1-1];
+		}
+		if(x1-1 >=0 && y1-1 >=0){
+			sum = sum+ Psum[x1-1][y1-1];
+		}
+
+		return sum;
+
+	}
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+
+		int[][] matrix = new int[n][m];
+
+		for(int i=0; i<n; i++){
+			for(int j=0; j<m; j++){
+				matrix[i][j]=sc.nextInt();
+			}
+		} 
+		Main obj = new Main(matrix);
+
+		int q = sc.nextInt();
+		for(int i=0; i<q; i++){
+
+			int row1 = sc.nextInt();
+			int col1 = sc.nextInt();
+			int row2 = sc.nextInt();
+			int col2 = sc.nextInt();
+
+			System.out.println(obj.sumRegion(row1,col1,row2,col2));
+		}
+
+	}
+}
