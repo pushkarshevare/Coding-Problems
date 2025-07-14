@@ -1,0 +1,65 @@
+/*
+Question: Write a program in C such that it takes a lower limit and upper limit as inputs and print all the intermediate palindrome numbers.
+
+Test Cases:
+
+TestCase 1:
+Input :
+10 , 80
+Expected Result:
+11 , 22 , 33 , 44 , 55 , 66 , 77.
+
+Test Case 2:
+Input:
+100,200
+Expected Result:
+101 , 111 , 121 , 131 , 141 , 151 , 161 , 171 , 181 , 191.
+
+*/
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Scanner;
+class Main {
+    
+    public static void palindromeNumbers(int n,int m){
+        
+        for(int i=n; i<m;i++){
+            
+            if(checkPalindrome(i)){
+                System.out.print(i+ " ");
+            }
+            
+            
+        }
+    }
+    
+    public static boolean checkPalindrome(int num){
+        
+        int rem=0;
+        int temp = num;
+        while(temp!=0){
+            
+            int n = temp%10;
+            rem = (rem*10) + n;
+            temp = temp/10;
+            
+        }
+        if(num == rem){
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num1 = sc.nextInt();
+        int num2 = sc.nextInt();
+        
+        palindromeNumbers(num1,num2);
+        
+        
+    }
+}
