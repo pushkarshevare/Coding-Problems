@@ -1,0 +1,58 @@
+/*
+You are given a matrix mat. The task is to perform boundary traversal on the matrix in a clockwise manner starting from the first row of the matrix.
+
+Input: mat[][] = [[1, 2, 3, 4],
+                  [5, 6, 7, 8],
+                  [9, 10, 11, 12],
+                  [13, 14, 15,16]]
+Output: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5]
+Explanation: The boundary traversal is: [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5]
+
+Input:mat[][] = [[12, 11, 10, 9],
+                 [8, 7, 6, 5],
+                 [4, 3, 2, 1]]
+Output: [12, 11, 10, 9, 5, 1, 2, 3, 4, 8]
+Explanation: The boundary traversal is: [12, 11, 10, 9, 5, 1, 2, 3, 4, 8]
+
+*/
+
+// User function Template for Java
+
+class Solution {
+    
+    static ArrayList<Integer> boundaryTraversal(int mat[][]) {
+        // code here
+        
+        int n = mat.length;
+        
+        ArrayList<Integer>res = new ArrayList<>();
+        
+        int i=0;
+        int j=0;
+        
+        for(int k=0; k<n-1; k++ ){
+            res.add(mat[i][j]);
+            j++;
+        }
+        
+        for(int k=0; k<n-1; k++){
+            res.add(mat[i][j]);
+            i++;
+        }
+        
+        for(int k=0; k<n-1; k++){
+            res.add(mat[i][j]);
+            j--;
+        }
+        
+        for(int k=0; k<n-1; k++){
+            res.add(mat[i][j]);
+            i--;
+        }
+        
+        
+        return res;
+    }
+}
+
+
